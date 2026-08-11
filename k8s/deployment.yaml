@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartscale-demo
+  labels:
+    app: smartscale-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smartscale-demo
+  template:
+    metadata:
+      labels:
+        app: smartscale-demo
+    spec:
+      containers:
+        - name: demo-app
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
